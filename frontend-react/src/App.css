@@ -1,0 +1,56 @@
+.app-body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-5);
+}
+
+.status-line {
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.route-result {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  margin-top: var(--space-2);
+}
+
+.route-result--ok {
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  color: var(--caspian);
+}
+
+.route-result--error {
+  background: #fdecea;
+  border: 1px solid #f2c6c1;
+  color: #c0392b;
+}
+
+.section-status {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: var(--space-2) 0;
+}
+
+.btn-primary {
+  background: var(--forest);
+  color: var(--surface);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background: var(--forest-dark);
+}

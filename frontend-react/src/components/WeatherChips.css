@@ -1,0 +1,16 @@
+.weather-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--space-3);
+}
+
+.weather-chip {
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+}

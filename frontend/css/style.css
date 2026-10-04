@@ -1,0 +1,336 @@
+/* ==========================================
+   Smart Travel AI — هویت بصری «تابلوی جاده شمال»
+   پالت رنگ از دل خود موضوع: جنگل، دریای خزر، باغ مرکبات
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  /* رنگ‌ها */
+  --ink: #16261c;          /* سبز کاج تیره — متن اصلی */
+  --paper: #e7ece5;        /* مه ساحلی — پس‌زمینه صفحه */
+  --surface: #f8faf6;      /* سطح کارت‌ها، روشن‌تر از پس‌زمینه */
+  --forest: #1f4a3c;       /* سبز جنگل — هدر، دکمه‌ها */
+  --forest-dark: #12332a;
+  --caspian: #2f6f62;      /* سبزآبی خزری — لینک، جزئیات */
+  --tangerine: #e0862e;    /* نارنجی باغ مرکبات — تاکید و CTA */
+  --fog: #b7c3ba;          /* خاکستری‌سبز — خط‌ها و حاشیه */
+  --text-muted: #55665a;
+
+  /* تایپوگرافی */
+  --font-display: 'Vazirmatn', sans-serif;
+  --font-body: 'Vazirmatn', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   هدر
+   ========================================== */
+
+.app-header {
+  background: var(--forest);
+  color: var(--surface);
+  padding: 22px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: 0 2px 12px rgba(18, 51, 42, 0.25);
+}
+
+.app-header .wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.app-header .tagline {
+  font-size: 13.5px;
+  color: #cfe0d6;
+  margin: 4px 0 0;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: #d9e8de;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fog);
+  flex-shrink: 0;
+}
+
+.status-dot.active {
+  background: var(--tangerine);
+  box-shadow: 0 0 0 3px rgba(224, 134, 46, 0.25);
+}
+
+/* ==========================================
+   محتوای اصلی
+   ========================================== */
+
+.app-body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+button {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 11px 20px;
+  background: var(--forest);
+  color: var(--surface);
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: var(--forest-dark);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--tangerine);
+  outline-offset: 2px;
+}
+
+#result {
+  padding: 11px 16px;
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  border-radius: 9px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: var(--caspian);
+  flex: 1;
+  min-width: 220px;
+}
+
+#location-status {
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-inline-start: 3px solid var(--tangerine);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   نقشه — قهرمان صفحه
+   ========================================== */
+
+#map {
+  width: 100%;
+  height: 520px;
+  border-radius: 14px;
+  border: 1px solid var(--fog);
+  box-shadow: 0 8px 28px rgba(22, 38, 28, 0.12);
+  overflow: hidden;
+}
+
+/* استایل popup مارکرها روی نقشه */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  font-family: var(--font-body);
+}
+
+.popup-route-btn {
+  margin-top: 8px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  background: var(--caspian);
+}
+
+.popup-route-btn:hover {
+  background: var(--forest-dark);
+}
+
+/* ==========================================
+   دفترچه مسیر — لیست مکان‌ها به‌شکل تابلوهای کیلومتری
+   ========================================== */
+
+.places-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 19px;
+  margin: 32px 0 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.places-heading .count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+#places-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.place-card {
+  position: relative;
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  border-radius: 10px;
+  overflow: hidden;
+  animation: card-rise 0.35s ease backwards;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* عنصر امضادار: تابلوی کیلومتری سبز، الهام‌گرفته از تابلوهای جاده‌ای شمال */
+.km-post {
+  flex-shrink: 0;
+  width: 44px;
+  background: var(--forest);
+  color: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.place-card-body {
+  padding: 10px 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.place-card-body .place-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  display: block;
+}
+
+.place-card-body .place-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.place-card-body .place-features {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--caspian);
+  margin-top: 6px;
+  display: block;
+}
+
+/* ==========================================
+   واکنش‌گرا برای موبایل
+   ========================================== */
+
+@media (max-width: 640px) {
+  .app-body {
+    padding: 16px;
+  }
+
+  .app-header {
+    padding: 18px 16px;
+  }
+
+  #map {
+    height: 380px;
+  }
+
+  #places-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* احترام به کاربرانی که انیمیشن کمتر می‌خوان */
+@media (prefers-reduced-motion: reduce) {
+  .place-card {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   اضافه‌شده برای فیچر Nearby Places
+   ========================================== */
+
+#nearby-toggle-btn {
+  background: var(--surface);
+  color: var(--forest);
+  border: 1.5px solid var(--forest);
+}
+
+#nearby-toggle-btn:hover {
+  background: var(--forest);
+  color: var(--surface);
+}
+
+#nearby-toggle-btn.active {
+  background: var(--tangerine);
+  color: var(--surface);
+  border-color: var(--tangerine);
+}
+
+.place-distance {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tangerine);
+  display: block;
+  margin-top: 3px;
+}

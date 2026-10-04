@@ -1,0 +1,86 @@
+.places-heading {
+  font-size: 19px;
+  font-weight: 800;
+  margin: var(--space-4) 0 var(--space-3);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.places-count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.places-empty {
+  color: var(--text-muted);
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.place-card {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--fog);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.km-post {
+  flex-shrink: 0;
+  width: 44px;
+  background: var(--forest);
+  color: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.place-card-body {
+  padding: 10px 12px;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.place-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.place-name {
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.place-fav {
+  background: none;
+  border: none;
+  color: var(--tangerine);
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+}
+
+.place-meta {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.place-distance {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tangerine-dark);
+}

@@ -1,0 +1,60 @@
+.app-header {
+  background: var(--forest);
+  color: var(--surface);
+  padding: var(--space-4);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  margin-bottom: var(--space-4);
+}
+
+.app-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.app-wordmark {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.app-tagline {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: #cfe0d6;
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-ghost-light {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--surface);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 560px) {
+  .app-header {
+    padding: var(--space-3);
+  }
+
+  .app-wordmark {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,145 @@
+
+/* ==========================================
+   اضافه‌شده برای فیچر Authentication
+   ========================================== */
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.auth-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-user-email {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #d9e8de;
+}
+
+.auth-btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--surface);
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.auth-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.auth-btn-solid {
+  background: var(--tangerine);
+  color: var(--surface);
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.auth-btn-solid:hover {
+  background: #c6741f;
+}
+
+/* مودال ورود/ثبت‌نام */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 51, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.auth-modal-box {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 28px;
+  width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.auth-modal-box h3 {
+  font-family: var(--font-display);
+  margin: 0 0 6px;
+  color: var(--forest);
+}
+
+.auth-modal-box input {
+  padding: 10px 12px;
+  border: 1px solid var(--fog);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.auth-error {
+  color: #c0392b;
+  font-size: 12.5px;
+  margin: 0;
+  min-height: 16px;
+}
+
+/* دکمه ستاره علاقه‌مندی */
+.favorite-btn {
+  background: none;
+  border: none;
+  color: var(--tangerine);
+  font-size: 16px;
+  padding: 0 4px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.15);
+}
+
+.favorite-btn.favorited {
+  color: var(--tangerine);
+}
+
+
+.admin-modal-box {
+  width: 380px;
+}
+
+.admin-modal-box select,
+.admin-modal-box textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--fog);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.admin-coords-row {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-coords-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-success {
+  color: var(--caspian);
+  font-size: 12.5px;
+  margin: 0;
+  min-height: 16px;
+}
+

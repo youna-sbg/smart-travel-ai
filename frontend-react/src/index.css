@@ -1,0 +1,80 @@
+/* ==========================================
+   Smart Travel AI — سیستم طراحی «جاده شمال»
+   الهام‌گرفته از جنگل، دریای خزر، و تابلوهای کیلومتری جاده‌های مازندران
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  /* --- رنگ --- */
+  --ink: #16261c;
+  --paper: #e9eee6;
+  --surface: #ffffff;
+  --forest: #1f4a3c;
+  --forest-dark: #12332a;
+  --caspian: #2f6f62;
+  --tangerine: #e0862e;
+  --tangerine-dark: #c6741f;
+  --fog: #c3cec7;
+  --text-muted: #55665a;
+
+  /* --- تایپوگرافی --- */
+  --font-display: 'Vazirmatn', sans-serif;
+  --font-body: 'Vazirmatn', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* --- فاصله‌گذاری --- */
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 36px;
+
+  /* --- گردی گوشه --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  direction: rtl;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2.5px solid var(--tangerine);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

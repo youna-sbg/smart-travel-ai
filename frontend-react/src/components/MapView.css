@@ -1,0 +1,14 @@
+.map-container {
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--fog);
+  box-shadow: 0 8px 28px rgba(22, 38, 28, 0.12);
+  overflow: hidden;
+}
+
+@media (max-width: 560px) {
+  .map-container {
+    height: 380px;
+  }
+}

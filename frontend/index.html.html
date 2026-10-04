@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Travel AI — نقشه مکان‌های شمال</title>
+
+  <!-- Neshan Leaflet SDK (شامل خود Leaflet هم می‌شه، نیازی به لود جدا نیست) -->
+  <link rel="stylesheet" href="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.css" />
+  <script src="https://static.neshan.org/sdk/leaflet/v1.9.4/neshan-sdk/v1.0.8/index.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-top">
+      <div>
+        <h1 class="wordmark">Smart Travel AI</h1>
+        <p class="tagline">دستیار سفر جاده‌ای شمال — بابل، بابلسر، ساری</p>
+      </div>
+
+      <div id="auth-guest" class="auth-widget">
+        <button class="auth-btn-ghost" onclick="openAuthModal('login')">ورود</button>
+        <button class="auth-btn-solid" onclick="openAuthModal('register')">ثبت‌نام</button>
+      </div>
+      <div id="auth-user" class="auth-widget" style="display:none;">
+        <button id="admin-add-place-btn" class="auth-btn-solid" onclick="openAdminModal()" style="display:none;">+ افزودن مکان</button>
+        <span id="auth-user-email" class="auth-user-email"></span>
+        <button class="auth-btn-ghost" onclick="handleLogout()">خروج</button>
+      </div>
+    </div>
+
+    <div class="status-chip">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="location-status-text">در حال گرفتن موقعیت شما...</span>
+      <span id="user-weather-text"></span>
+    </div>
+  </header>
+
+  <!-- مودال ورود/ثبت‌نام -->
+  <div id="auth-modal" class="auth-modal-overlay" style="display:none;">
+    <div class="auth-modal-box">
+      <h3 id="auth-modal-title">ورود به حساب</h3>
+      <input type="email" id="auth-email" placeholder="ایمیل">
+      <input type="password" id="auth-password" placeholder="رمز عبور (حداقل ۸ کاراکتر)">
+      <p id="auth-error" class="auth-error"></p>
+      <button id="auth-submit-btn" onclick="submitAuthForm()">ورود</button>
+      <button class="auth-btn-ghost" onclick="closeAuthModal()">انصراف</button>
+    </div>
+  </div>
+
+  <!-- مودال افزودن مکان — فقط ادمین دکمه‌ش رو می‌بینه -->
+  <div id="admin-modal" class="auth-modal-overlay" style="display:none;">
+    <div class="auth-modal-box admin-modal-box">
+      <h3>افزودن مکان جدید</h3>
+
+      <input type="text" id="admin-name" placeholder="اسم مکان *">
+
+      <select id="admin-city">
+        <option value="">شهر را انتخاب کن *</option>
+      </select>
+
+      <select id="admin-category">
+        <option value="">دسته‌بندی را انتخاب کن *</option>
+      </select>
+
+      <div class="admin-coords-row">
+        <input type="text" id="admin-latitude" placeholder="latitude *">
+        <input type="text" id="admin-longitude" placeholder="longitude *">
+      </div>
+
+      <input type="text" id="admin-address" placeholder="آدرس (اختیاری)">
+      <textarea id="admin-description" placeholder="توضیح کوتاه (اختیاری)" rows="2"></textarea>
+
+      <p id="admin-error" class="auth-error"></p>
+      <p id="admin-success" class="admin-success"></p>
+
+      <button onclick="submitAdminForm()">ثبت مکان</button>
+      <button class="auth-btn-ghost" onclick="closeAdminModal()">بستن</button>
+    </div>
+  </div>
+
+  <main class="app-body">
+    <div id="city-weather" class="city-weather-row"></div>
+
+    <div class="filter-row">
+      <select id="city-filter" onchange="onFilterChange()">
+        <option value="">همه شهرها</option>
+      </select>
+      <select id="category-filter" onchange="onFilterChange()">
+        <option value="">همه دسته‌بندی‌ها</option>
+      </select>
+      <button class="filter-clear-btn" onclick="clearFilters()">پاک کردن فیلتر</button>
+    </div>
+
+    <div class="toolbar">
+      <button onclick="getRoute()">مسیر تست: تهران → چالوس</button>
+      <button id="nearby-toggle-btn" onclick="toggleNearbySort()">مرتب‌سازی بر اساس نزدیکی</button>
+      <div id="result"></div>
+    </div>
+
+    <div id="map"></div>
+
+    <h2 class="places-heading">
+      دفترچه مسیر
+      <span class="count" id="places-count"></span>
+    </h2>
+    <div id="places-list"></div>
+  </main>
+
+  <!-- ترتیب لود شدن این فایل‌ها مهمه: هرکدوم به فایل‌های قبلی وابسته‌ست -->
+  <script src="js/api.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/location.js"></script>
+  <script src="js/route.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/markers.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>
