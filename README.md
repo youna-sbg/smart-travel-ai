@@ -1,4 +1,4 @@
-آره، همین متن پایه خوبه. من فقط یک نسخه **حرفه‌ای‌تر و کامل‌تر** برات می‌دم که مستقیم کل README فعلی رو پاک کنی و اینو جایگزین کنی:
+
 
 ````markdown
 # Smart Travel AI 🗺️🤖
@@ -615,6 +615,3 @@ Intelligent Travel Recommendation
 ```
 
 The project is currently under active development.
-
-```
-
